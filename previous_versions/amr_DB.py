@@ -16,14 +16,18 @@ try:
 
     create_amr_table = """CREATE TABLE amr (
                         id INTEGER PRIMARY KEY,
-                        pilot_id INTEGER FOREIGN KEY REFERENCES pilot(id),
+                        pilot_id INTEGER NOT NULL,
                         discord TEXT NOT NULL,
                         information TEXT NOT NULL,
                         date datetime,
                         callsign TEXT NOT NULL,
                         operation TEXT NOT NULL,
-                        """
-    cursor.execute(create_pilot_table)
+                        estimated TEXT NOT NULL,
+                        duration INTEGER NOT NULL,
+                        base TEXT NOT NULL,
+                        FOREIGN KEY(pilot_id) REFERENCES pilot(id)
+                        );"""
+    cursor.execute(create_amr_table)
     connection.commit()
     print("Table created")
 
